@@ -94,6 +94,49 @@ def alert():
     btn2.pack()
     root.mainloop()
 
+def tutorial():
+    def leavemini(what):
+        what.destroy()
+
+    def page2():
+        tut.destroy()
+        tut2 = tk.Tk()
+
+        def page3():
+            tut2.destroy()
+            tut3 = tk.Tk()
+
+            tut3.wm_title("Part 3")
+            label = ttk.Label(tut3, text="Part 3", font=MED_FONT)
+            label.pack(side="top", fill="x", pady=10)
+            label2 = ttk.Label(tut3, text="Then from the combo box choose your unit!", font=MED_FONT)
+            label2.pack(side="top", fill="x", pady=10)
+            B1 = ttk.Button(tut3, text="Done", command=tut3.destroy)
+            B1.pack()
+            tut3.mainloop()
+
+        tut2.wm_title("Part 2")
+        label = ttk.Label(tut2, text="Part 2", font=MED_FONT)
+        label.pack(side="top", fill="x", pady=10)
+        label2 = ttk.Label(tut2, text="Choose catagory the unit you want to convert to is in", font=MED_FONT)
+        label2.pack(side="top", fill="x", pady=10)
+        B1 = ttk.Button(tut2, text="Next", command=page3)
+        B1.pack()
+        tut2.mainloop()
+
+    tut = tk.Tk()
+    tut.wm_title("Tutorial")
+    label = ttk.Label(tut, text="Welcome to the help menu tutorial", font=MED_FONT)
+    label.pack(side="top", fill="x", pady=10)
+
+    B1 = ttk.Button(tut, text="Simple Instructions", command=page2)
+    B1.pack()
+    B2 = ttk.Button(tut, text="Advanced(Part One)", command=lambda: popupmsg("Not yet completed"))
+    B2.pack()
+    B3 = ttk.Button(tut, text="Advanced(Part Two)", command=lambda: popupmsg("Not yet completed"))
+    B3.pack()
+    tut.mainloop()
+
 class Converter(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -112,13 +155,17 @@ class Converter(tk.Tk):
         filemenu.add_command(label="About", command=about)
         filemenu.add_separator()
         filemenu.add_command(label="Exit", command=quiter)
-        menubar.add_cascade(label="File",menu=filemenu)
+        menubar.add_cascade(label="File", menu=filemenu)
+
+        helpmenu = tk.Menu(menubar, tearoff=0)
+        helpmenu.add_command(label="Tutorial", command=tutorial)
+        menubar.add_cascade(label="Help", menu=helpmenu)
 
         tk.Tk.config(self, menu=menubar)
 
         self.frames = {}
 
-        for F in (StartPage, PageOne):
+        for F in (StartPage, PageOne, PageTwo, PageThree, PageFour):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
@@ -139,13 +186,13 @@ class StartPage(tk.Frame):
         btn1 = ttk.Button(self, text="Currency Converter", command=lambda: controller.show_frame(PageOne))
         btn1.pack()
 
-        btn2 = ttk.Button(self, text="Science Converter", command=lambda: popupmsg("Not Supported Yet"))
+        btn2 = ttk.Button(self, text="Science Converter", command=lambda: controller.show_frame(PageTwo))
         btn2.pack()
 
-        btn3 = ttk.Button(self, text="Weight Converter", command=lambda: popupmsg("Not Supported Yet"))
+        btn3 = ttk.Button(self, text="Weight Converter", command=lambda: controller.show_frame(PageThree))
         btn3.pack()
 
-        btn4 = ttk.Button(self, text="Temperature Converter", command=lambda: popupmsg("Not Supported Yet"))
+        btn4 = ttk.Button(self, text="Temperature Converter", command=lambda: controller.show_frame(PageFour))
         btn4.pack()
 
         btn5 = ttk.Button(self, text="Quit", command=quiter)
@@ -189,6 +236,7 @@ class PageOne(tk.Frame):
 
         btn2 = ttk.Button(self, text="Back", command=lambda: controller.show_frame(StartPage))
         btn2.grid(column=1, row=3)
+        
     def converted(self):
         if self.combVar.get() == self.combVar2.get():
             popupmsg("Choose two different values")
@@ -259,6 +307,36 @@ class PageOne(tk.Frame):
             self.update()
         else:
             popupmsg("Not Supported Yet")
+
+class PageTwo(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+
+        label = ttk.Label(self, text="Comming Soon", font=MED_FONT)
+        label.pack()
+
+        btn1 = ttk.Button(self, text="Back", command=lambda: controller.show_frame(StartPage))
+        btn1.pack()
+
+class PageThree(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+
+        label = ttk.Label(self, text="Comming Soon", font=MED_FONT)
+        label.pack()
+
+        btn1 = ttk.Button(self, text="Back", command=lambda: controller.show_frame(StartPage))
+        btn1.pack()
+
+class PageFour(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+
+        label = ttk.Label(self, text="Comming Soon", font=MED_FONT)
+        label.pack()
+
+        btn1 = ttk.Button(self, text="Back", command=lambda: controller.show_frame(StartPage))
+        btn1.pack()
         
 def main():
     app = Converter()
