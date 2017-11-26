@@ -1,4 +1,4 @@
 Changelog:
-Version 0.1.1 - Added the help menu and also added the logo to the application
+Version 0.1.1 - Added the help menu and also added the logo to the exe file
 
 Version 0.1 - Initial release
