@@ -8,4 +8,5 @@ If you wish to compile run the source code on your computer, you will need Pytho
 
 If you have any questions please put them in the issues tab.
 
-Note: Older versions will soon be moved to sourceforge
+Note: Older versions are found on sourceforge
+Link: https://sourceforge.net/projects/converter-application/?source=navbar
