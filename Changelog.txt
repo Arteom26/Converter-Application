@@ -1,8 +1,2 @@
 Changelog:
-Version 0.1.2:
-Windows - Fix major text bug, and made interface a little bit better
-MacOS - Added icon and fixed small text bug
-
-Version 0.1.1 - Added the help menu and also added the logo to the exe file
-
-Version 0.1 - Initial release
+Nothing has been released in this branch
