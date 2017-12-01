@@ -1,4 +1,6 @@
 Changelog:
+Version 0.2 - Added temperature conversions
+
 Version 0.1.2:
 Windows - Fix major text bug, and made interface a little bit better
 MacOS - Added icon and fixed small text bug
