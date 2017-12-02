@@ -18,14 +18,17 @@ class PageOne(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
+        self.l = tk.StringVar()
+        self.l2 = tk.StringVar()
+
         functions.bicoin_amt("USD")
         functions.bicoin_amt("EUR")
         functions.euro_amt()
 
-        label = ttk.Label(self, text="Currency Converter", font=SMALL_FONT)
+        label = ttk.Label(self, text="Currency Converter", font=converter.SMALL_FONT)
         label.grid(column=1, row=1)
 
-        label1 = ttk.Label(self, text="Convert ", font=SMALL_FONT)
+        label1 = ttk.Label(self, text="Convert ", font=converter.SMALL_FONT)
         label1.grid(column=1, row=2)
 
         self.amt = tk.StringVar()
@@ -33,7 +36,7 @@ class PageOne(tk.Frame):
         self.entry.insert(0, 1)
         self.entry.grid(column=2, row=2)
 
-        label3 = ttk.Label(self, text="  ", font=SMALL_FONT)
+        label3 = ttk.Label(self, text="  ", font=converter.SMALL_FONT)
         label3.grid(column=3, row=2)
 
         self.combVar = tk.StringVar()
@@ -58,77 +61,63 @@ class PageOne(tk.Frame):
         btn2.grid(column=1, row=3)
         
     def converted(self):
-        l = tk.StringVar()
-        l2 = tk.StringVar()
         if self.combVar.get() == self.combVar2.get():
             popupmsg("Choose two different values")
         elif self.combVar.get() == "USD" and self.combVar2.get() == "Bitcoin(s)":
-            global l
-            global l2
             functions.bicoin_amt("USD")
             functions.euro_amt()
             total = float(self.amt.get()) / float(converter.lastPrice)
-            l.set(str(total))
-            l2.set(" Bicoin(s)")
-            label = ttk.Label(self, textvariable=l, font=SMALL_FONT)
-            label2 = ttk.Label(self, textvariable=l2, font=SMALL_FONT)
+            self.l.set(str(total))
+            self.l2.set(" Bicoin(s)")
+            label = ttk.Label(self, textvariable=self.l, font=converter.SMALL_FONT)
+            label2 = ttk.Label(self, textvariable=self.l2, font=converter.SMALL_FONT)
             #label = ttk.Label(self, text=str(total), font=SMALL_FONT)
             label.grid(column=8, row=2)
             #label2 = ttk.Label(self, text=" Bicoin(s)", font=SMALL_FONT)
             label2.grid(column=9, row=2)
         elif self.combVar.get() == "Bitcoin(s)" and self.combVar2.get() == "USD":
-            global l
-            global l2
             functions.bicoin_amt("USD")
             total = float(self.amt.get()) * float(converter.lastPrice)
-            l.set(str(total))
-            l2.set(" USD")
-            label = ttk.Label(self, textvariable=l, font=SMALL_FONT)
-            label2 = ttk.Label(self, textvariable=l2, font=SMALL_FONT)
+            self.l.set(str(total))
+            self.l2.set(" USD")
+            label = ttk.Label(self, textvariable=self.l, font=converter.SMALL_FONT)
+            label2 = ttk.Label(self, textvariable=self.l2, font=converter.SMALL_FONT)
             label.grid(column=8, row=2)
             label2.grid(column=9, row=2)
         elif self.combVar.get() == "Euro(s)" and self.combVar2.get() == "USD":
-            global l
-            global l2
             functions.euro_amt()
             total = converter.euro * float(self.amt.get())
-            l.set(str(total))
-            l2.set(" USD")
-            label = ttk.Label(self, textvariable=l, font=SMALL_FONT)
-            label2 = ttk.Label(self, textvariable=l2, font=SMALL_FONT)
+            self.l.set(str(total))
+            self.l2.set(" USD")
+            label = ttk.Label(self, textvariable=self.l, font=converter.SMALL_FONT)
+            label2 = ttk.Label(self, textvariable=self.l2, font=converter.SMALL_FONT)
             label.grid(column=8, row=2)
             label2.grid(column=9, row=2)
         elif self.combVar.get() == "USD" and self.combVar2.get() == "Euro(s)":
-            global l
-            global l2
             functions.euro_amt()
             total = float(self.amt.get()) / converter.euro
-            l.set(str(total))
-            l2.set(" Euro(s)")
-            label = ttk.Label(self, textvariable=l, font=SMALL_FONT)
-            label2 = ttk.Label(self, textvariable=l2, font=SMALL_FONT)
+            self.l.set(str(total))
+            self.l2.set(" Euro(s)")
+            label = ttk.Label(self, textvariable=self.l, font=converter.SMALL_FONT)
+            label2 = ttk.Label(self, textvariable=self.l2, font=converter.SMALL_FONT)
             label.grid(column=8, row=2)
             label2.grid(column=9, row=2)
         elif self.combVar.get() == "Euro(s)" and self.combVar2.get() == "Bitcoin(s)":
-            global l
-            global l2
             functions.bicoin_amt("EUR")
             total = (float(self.amt.get())) / float(converter.lastPrice)
-            l.set(str(total))
-            l2.set(" Bitcoin(s)")
-            label = ttk.Label(self, textvariable=l, font=SMALL_FONT)
-            label2 = ttk.Label(self, textvariable=l2, font=SMALL_FONT)
+            self.l.set(str(total))
+            self.l2.set(" Bitcoin(s)")
+            label = ttk.Label(self, textvariable=self.l, font=converter.SMALL_FONT)
+            label2 = ttk.Label(self, textvariable=self.l2, font=converter.SMALL_FONT)
             label.grid(column=8, row=2)
             label2.grid(column=9, row=2)
         elif self.combVar.get() == "Bitcoin(s)" and self.combVar2.get() == "Euro(s)":
-            global l
-            global l2
             functions.bicoin_amt("EUR")
             total = (float(self.amt.get())) * float(converter.lastPrice)
-            l.set(str(total))
-            l2.set(" Euro(s)")
-            label = ttk.Label(self, textvariable=l, font=SMALL_FONT)
-            label2 = ttk.Label(self, textvariable=l2, font=SMALL_FONT)
+            self.l.set(str(total))
+            self.l2.set(" Euro(s)")
+            label = ttk.Label(self, textvariable=self.l, font=converter.SMALL_FONT)
+            label2 = ttk.Label(self, textvariable=self.l2, font=converter.SMALL_FONT)
             label.grid(column=8, row=2)
             label2.grid(column=9, row=2)
         else:

@@ -17,8 +17,8 @@ import json
 import sys
 
 LARGE_FONT = ("Verdana", 20)
-MED_FONT = ("Verdana", 12)
-SMALL_FONT = ("Verdana", 8)
+MED_FONT = ("Verdana", 16)
+SMALL_FONT = ("Verdana", 12)
 
 euro = 0
 
@@ -112,6 +112,9 @@ class PageFour(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
+        l = tk.StringVar()
+        l2 = tk.StringVar()
+
         label = ttk.Label(self, text="Currency Converter", font=SMALL_FONT)
         label.grid(column=1, row=1)
 
@@ -148,28 +151,22 @@ class PageFour(tk.Frame):
         btn2.grid(column=1, row=3)
 
     def converted(self):
-        l = tk.StringVar()
-        l2 = tk.StringVar()
         if self.combVar.get() == self.combVar2.get():
             popupmsg("Choose two different values")
         elif self.combVar.get() == "Fahrenheit" and self.combVar2.get() == "Celsius":
-            global l
-            global l2
             total = (float(self.amt.get())-32)*(5/9)
-            l.set(str(total))
-            l2.set(" Celsius")
-            label = ttk.Label(self, textvariable=l, font=SMALL_FONT)
-            label2 = ttk.Label(self, textvariable=l2, font=SMALL_FONT)
+            self.l.set(str(total))
+            self.l2.set(" Celsius")
+            label = ttk.Label(self, textvariable=self.l, font=SMALL_FONT)
+            label2 = ttk.Label(self, textvariable=self.l2, font=SMALL_FONT)
             label.grid(column=8, row=2)
             label2.grid(column=9, row=2)
         elif self.combVar.get() == "Celsius" and self.combVar2.get() == "Fahrenheit":
-            global l
-            global l2
             total = (float(self.amt.get())*(9/5)) + 32
-            l.set(str(total))
-            l2.set(" Fahrenheit")
-            label = ttk.Label(self, textvariable=l, font=SMALL_FONT)
-            label2 = ttk.Label(self, textvariable=l2, font=SMALL_FONT)
+            self.l.set(str(total))
+            self.l2.set(" Fahrenheit")
+            label = ttk.Label(self, textvariable=self.l, font=SMALL_FONT)
+            label2 = ttk.Label(self, textvariable=self.l2, font=SMALL_FONT)
             label.grid(column=8, row=2)
             label2.grid(column=9, row=2)
         else:
@@ -177,7 +174,7 @@ class PageFour(tk.Frame):
         
 def main():
     app = Converter()
-    app.geometry("650x300")
+    app.geometry("750x300")
     app.mainloop()
 
 if __name__ == '__main__':
