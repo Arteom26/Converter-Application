@@ -83,7 +83,7 @@ def alert():
     label.pack()
     def run():
         root.destroy()
-        converter.main()
+        main()
         
     btn1 = ttk.Button(root, text="Agree", command=run)
     btn1.pack()
@@ -133,3 +133,8 @@ def tutorial():
     B3 = ttk.Button(tut, text="Advanced(Part Two)", command=lambda: popupmsg("Not yet completed"))
     B3.pack()
     tut.mainloop()
+
+def main():
+    app = converter.Converter()
+    app.geometry("650x300")
+    app.mainloop()

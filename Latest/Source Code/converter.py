@@ -1,6 +1,9 @@
 import PageOne
 from PageOne import *
 
+import PageFour
+from PageFour import *
+
 import functions
 from functions import *
 
@@ -17,8 +20,8 @@ import json
 import sys
 
 LARGE_FONT = ("Verdana", 20)
-MED_FONT = ("Verdana", 16)
-SMALL_FONT = ("Verdana", 12)
+MED_FONT = ("Verdana", 12)
+SMALL_FONT = ("Verdana", 8)
 
 euro = 0
 
@@ -108,73 +111,9 @@ class PageThree(tk.Frame):
         btn1 = ttk.Button(self, text="Back", command=lambda: controller.show_frame(StartPage))
         btn1.pack()
 
-class PageFour(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-
-        l = tk.StringVar()
-        l2 = tk.StringVar()
-
-        label = ttk.Label(self, text="Currency Converter", font=SMALL_FONT)
-        label.grid(column=1, row=1)
-
-        label1 = ttk.Label(self, text="Convert ", font=SMALL_FONT)
-        label1.grid(column=1, row=2)
-
-        self.amt = tk.StringVar()
-        self.entry = ttk.Entry(self, textvariable=self.amt, width=5)
-        self.entry.insert(0, 1)
-        self.entry.grid(column=2, row=2)
-
-        label3 = ttk.Label(self, text="  ", font=SMALL_FONT)
-        label3.grid(column=3, row=2)
-
-        self.combVar = tk.StringVar()
-        self.comboBox = ttk.Combobox(self, textvariable=self.combVar, width=10)
-        self.comboBox.grid(column=4, row=2)
-        self.comboBox['values'] = ('Fahrenheit', 'Celsius')
-        self.comboBox.current(0)
-
-        label2 = ttk.Label(self, text=" to ")
-        label2.grid(column=5, row=2)
-
-        self.combVar2 = tk.StringVar()
-        self.comboBox2 = ttk.Combobox(self, textvariable=self.combVar2, width=10)
-        self.comboBox2.grid(column=6, row=2)
-        self.comboBox2['values'] = ('Fahrenheit', 'Celsius')
-        self.comboBox2.current(0)
-
-        btn1 = ttk.Button(self, text="Convert", command=self.converted)
-        btn1.grid(column=7, row=2)
-
-        btn2 = ttk.Button(self, text="Back", command=lambda: controller.show_frame(StartPage))
-        btn2.grid(column=1, row=3)
-
-    def converted(self):
-        if self.combVar.get() == self.combVar2.get():
-            popupmsg("Choose two different values")
-        elif self.combVar.get() == "Fahrenheit" and self.combVar2.get() == "Celsius":
-            total = (float(self.amt.get())-32)*(5/9)
-            self.l.set(str(total))
-            self.l2.set(" Celsius")
-            label = ttk.Label(self, textvariable=self.l, font=SMALL_FONT)
-            label2 = ttk.Label(self, textvariable=self.l2, font=SMALL_FONT)
-            label.grid(column=8, row=2)
-            label2.grid(column=9, row=2)
-        elif self.combVar.get() == "Celsius" and self.combVar2.get() == "Fahrenheit":
-            total = (float(self.amt.get())*(9/5)) + 32
-            self.l.set(str(total))
-            self.l2.set(" Fahrenheit")
-            label = ttk.Label(self, textvariable=self.l, font=SMALL_FONT)
-            label2 = ttk.Label(self, textvariable=self.l2, font=SMALL_FONT)
-            label.grid(column=8, row=2)
-            label2.grid(column=9, row=2)
-        else:
-            popupmsg("Not Supported Yet")
-        
 def main():
     app = Converter()
-    app.geometry("750x300")
+    app.geometry("650x300")
     app.mainloop()
 
 if __name__ == '__main__':

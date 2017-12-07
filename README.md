@@ -1,4 +1,4 @@
-Good news! Mac OS Binaries have been released.
+Windows MSI installers have been released
 
 This application's goal is to be able to convert the most popular currencies, weights, and other things.
 

@@ -1,4 +1,6 @@
 Changelog:
+Version 0.2.1 - Added kelvins to temperature conversions
+
 Version 0.2 - Added temperature conversions
 
 Version 0.1.2:
